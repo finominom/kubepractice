@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apidepl
+spec:
+  selector:
+    matchLabels:
+      app: apidepl
+  template:
+    metadata:
+      labels:
+        app: apidepl
+    spec:
+      containers:
+      - name: apidepl
+        image: finominom/jaciserver
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000

@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fedpl
+spec:
+  selector:
+    matchLabels:
+      app: fedpl
+      
+  template:
+    metadata:
+      labels:
+        app: fedpl
+        
+    spec:
+      containers:
+      - name: fedpl
+        image: finominom/myvueclient:1.0
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            memory: "300Mi"
+            cpu: "500m"
+        ports:
+        -  containerPort: 8080
+        volumeMounts:
+          -  name: fedvol
+             mountPath: /usr/image
+            
+      volumes:
+        - name: fedvol
+          persistentVolumeClaim:
+            claimName: fepvc     
+
