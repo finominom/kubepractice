@@ -14,4 +14,5 @@ spec:
   storageClassName: hostpath
   hostPath:
     path: "/var/lib/mysql"
+    type: DirectoryOrCreate
    
